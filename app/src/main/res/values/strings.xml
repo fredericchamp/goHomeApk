@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="app_name">goHomeApk</string>
+	<string name="title_activity_login">Code</string>
+
+    <!-- Strings related to login -->
+	<string name="prompt_password">Code d\'accès</string>
+	<string name="action_sign_in">Valider</string>
+	<string name="action_sign_in_short">Valider</string>
+	<string name="error_incorrect_password">Code invalide</string>
+	<string name="error_field_required">Saisie obligatoire</string>
+
+	<!-- Strings related to reload -->
+	<string name="action_reload">Reload</string>
+
+</resources>
