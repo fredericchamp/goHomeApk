@@ -9,25 +9,26 @@
 			android:id="@+id/fullscreen_content"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:gravity="center"
 			android:orientation="vertical">
 
 		<ScrollView
 				android:id="@+id/login_form_view"
-				android:layout_width="350dp"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="160dp"
-				android:layout_marginLeft="30dp"
-				android:background="#B259">
+				android:background="#B259"
+				android:orientation="vertical">
 
-			<LinearLayout
+		<LinearLayout
 					android:id="@+id/login_form_layout"
-					android:layout_width="match_parent"
+					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:orientation="vertical"
 					android:paddingBottom="@dimen/activity_vertical_margin"
 					android:paddingLeft="@dimen/activity_horizontal_margin"
 					android:paddingRight="@dimen/activity_horizontal_margin"
-					android:paddingTop="@dimen/activity_vertical_margin" android:weightSum="1">
+					android:paddingTop="@dimen/activity_vertical_margin"
+					>
 
 				<android.support.design.widget.TextInputLayout
 						android:layout_width="match_parent"
@@ -35,7 +36,7 @@
 
 					<EditText
 							android:id="@+id/password"
-							android:layout_width="match_parent"
+							android:layout_width="300dp"
 							android:layout_height="wrap_content"
 							android:hint="@string/prompt_password"
 							android:inputType="textPassword"
@@ -53,6 +54,7 @@
 
 			</LinearLayout>
 		</ScrollView>
+
 		<WebView
 				android:id="@+id/main_web_view"
 				android:layout_width="match_parent"
