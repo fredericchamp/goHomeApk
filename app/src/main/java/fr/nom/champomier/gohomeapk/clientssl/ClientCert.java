@@ -1,13 +1,11 @@
 package fr.nom.champomier.gohomeapk.clientssl;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.KeyManagerFactory;
-import javax.net.ssl.SSLContext;
-import java.net.URL;
 import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -15,7 +13,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
-import android.content.res.AssetManager;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
 
 /**
  * Handle client certificate operations
@@ -25,12 +26,6 @@ public class ClientCert {
 	private static String certFileType = "PKCS12";
 	private static String certFileName = "";
 	private static String certPass = "";
-	private static AssetManager assetManager = null;
-
-	public static void init(AssetManager assMgt) {
-		if (assMgt != null) assetManager = assMgt;
-	}
-
 
 	public static KeyStore getSSLKeyStore(String fileName, String type, String pass)
 			throws NoSuchAlgorithmException, KeyStoreException, CertificateException, IOException {
@@ -38,13 +33,12 @@ public class ClientCert {
 		certFileName = fileName;
 		certPass = pass;
 		KeyStore keyStore = KeyStore.getInstance(certFileType);
-		keyStore.load(assetManager.open(certFileName), certPass.toCharArray());
+		keyStore.load(new FileInputStream(new File(certFileName)), certPass.toCharArray());
 		return keyStore;
 	}
 
 	static KeyStore getSSLKeyStore()
 			throws NoSuchAlgorithmException, KeyStoreException, CertificateException, IOException {
-		if (assetManager == null) return null;
 		return getSSLKeyStore(certFileName, certFileType, certPass);
 	}
 
