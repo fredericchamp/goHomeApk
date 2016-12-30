@@ -23,14 +23,18 @@ import fr.nom.champomier.gohomeapk.clientssl.ClientSSLWebViewClient;
 
 
 public class FullscreenActivity extends AppCompatActivity {
+	// Log TAG
+	private static final String TAG = "FullscreenActivity";
+
 	// Local file path to store certificate
 	public static final String localFilepath = "/data/fr.nom.champomier.gohomeapk/";
 	// Preferences file name
 	public static final String prefFileName = "goHome.pref";
-	// Log TAG
-	private static final String TAG = "FullscreenActivity";
 	// Certificate type
 	private static final String certType = "PKCS12";
+	// server helper
+	private static final String srvHelp = "https://www.champomier.nom";
+
 	private SharedPreferences pref;
 
 	private View mPassView;
@@ -57,13 +61,17 @@ public class FullscreenActivity extends AppCompatActivity {
 
 		mServerUrl = (EditText) findViewById(R.id.serverurl);
 		mServerUrl.setText(pref.getString("ServerURL", null));
-		if (mServerUrl.getText().toString().length() > 0) {
-			mServerUrl.setVisibility(View.GONE);
-		}
 
 		mCertificate = (EditText) findViewById(R.id.certificate);
 		mCertificate.setText(pref.getString("Certificate", null));
-		if (mCertificate.getText().toString().length() > 0) {
+
+		if ( mServerUrl.getText().toString().length() <= 0 ||
+			srvHelp.equals(mServerUrl.getText().toString()) ||
+			mCertificate.getText().toString().length() <= 0 ) {
+			mServerUrl.setVisibility(View.VISIBLE);
+			mCertificate.setVisibility(View.VISIBLE);
+		} else {
+			mServerUrl.setVisibility(View.GONE);
 			mCertificate.setVisibility(View.GONE);
 		}
 
